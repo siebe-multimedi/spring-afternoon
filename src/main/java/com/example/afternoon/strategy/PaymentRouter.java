@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Exercise 2. Spring can inject ALL beans of a type, as a Map (key = bean name)
- * or as a List (sorted by @Order).
+ * Exercise 2 (solved).
  */
 public class PaymentRouter {
 
@@ -17,16 +16,14 @@ public class PaymentRouter {
         this.ordered = ordered;
     }
 
-    /**
-     * TODO: charge the gateway whose BEAN NAME is gatewayName (for example
-     * "sepaGateway") and return what charge(...) returns. Throw an
-     * IllegalArgumentException for an unknown name.
-     */
     public String pay(String gatewayName, double amount) {
-        throw new UnsupportedOperationException("TODO");
+        PaymentGateway gateway = gateways.get(gatewayName);
+        if (gateway == null) {
+            throw new IllegalArgumentException("Unknown gateway: " + gatewayName);
+        }
+        return gateway.charge(amount);
     }
 
-    /** The names of the gateways, in the order Spring injected them. */
     public List<String> gatewayOrder() {
         return ordered.stream().map(PaymentGateway::name).toList();
     }

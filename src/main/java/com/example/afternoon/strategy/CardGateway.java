@@ -1,8 +1,11 @@
 package com.example.afternoon.strategy;
 
+import org.springframework.core.annotation.Order;
+
 /**
- * Exercise 2. No @Component on purpose: the tests register the classes themselves.
+ * Exercise 2 (solved). @Order(2): comes second in an injected List<PaymentGateway>.
  */
+@Order(2)
 public class CardGateway implements PaymentGateway {
 
     @Override
