@@ -7,9 +7,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CircularDependencyTest {
 
-    // When you extract a new class, add it to this list.
+    // PendingOrders was added to this list when it was extracted.
     private final ApplicationContextRunner runner = new ApplicationContextRunner()
-            .withUserConfiguration(OrderProcessor.class, InventoryChecker.class);
+            .withUserConfiguration(OrderProcessor.class, InventoryChecker.class, PendingOrders.class);
 
     @Test
     void contextStarts() {

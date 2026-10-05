@@ -1,19 +1,19 @@
 package com.example.afternoon.cycle;
 
 /**
- * Exercise 1. Stock minus what is already ordered.
+ * Exercise 1 (solved).
  */
 public class InventoryChecker {
 
     private static final int STOCK = 10;
 
-    private final OrderProcessor orders;
+    private final PendingOrders pending;
 
-    public InventoryChecker(OrderProcessor orders) {
-        this.orders = orders;
+    public InventoryChecker(PendingOrders pending) {
+        this.pending = pending;
     }
 
     public int available(String sku) {
-        return STOCK - orders.pendingFor(sku);
+        return STOCK - pending.quantityFor(sku);
     }
 }
