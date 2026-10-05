@@ -4,8 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Exercise 8. Saves the payment first, then rejects amounts above 1000.
- * A rejected payment must NOT stay in the database.
+ * Exercise 8 (solved). By default Spring rolls back only for unchecked exceptions
+ * (RuntimeException and Error). PaymentRejectedException is checked, so it has to be
+ * listed explicitly in rollbackFor.
  */
 @Service
 public class PaymentService {
@@ -16,7 +17,7 @@ public class PaymentService {
         this.payments = payments;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = PaymentRejectedException.class)
     public void pay(double amount) throws PaymentRejectedException {
         payments.save(new Payment(amount));
         if (amount > 1000) {
