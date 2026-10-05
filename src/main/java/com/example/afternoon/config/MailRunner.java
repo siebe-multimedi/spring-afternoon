@@ -16,7 +16,9 @@ public class MailRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Step 2 and 3: extend this line with the fields you add.
-        System.out.println("[config] host=" + mail.getHost() + ", port=" + mail.getPort());
+        System.out.println("[config] host=" + mail.getHost()
+                + ", port=" + mail.getPort()
+                + ", retries=" + mail.getRetries()
+                + ", connectionTimeout=" + mail.getConnectionTimeout());
     }
 }

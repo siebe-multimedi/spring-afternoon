@@ -16,6 +16,8 @@ app:
 mail:
   host: smtp.example.org
   port: 587
+  retries: 3
+  connection-timeout: 5s
 
 ---
 spring:
