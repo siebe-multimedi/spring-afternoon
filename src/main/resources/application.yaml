@@ -1,0 +1,34 @@
+# Exercise 5: the profile that is active by default. In step 3 you comment it
+# out: comment out ALL THREE lines (spring:, profiles: and active: dev).
+# Leaving "spring:" and "profiles:" in place with nothing under them is read
+# as the old spring.profiles property, and the application refuses to start.
+spring:
+  profiles:
+    active: dev
+
+# Shared settings live in this default section; the profile sections below
+# only override what actually differs.
+app:
+  greeting: Hello (shared default)
+  currency: EUR
+
+# Exercise 6: bound to MailProperties through @ConfigurationProperties.
+mail:
+  host: smtp.example.org
+  port: 587
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+app:
+  greeting: Hello from dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+app:
+  greeting: Hello from prod
